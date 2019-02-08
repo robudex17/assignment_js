@@ -1,0 +1,9 @@
+extends main_layout.pug
+block content
+        ul
+          if there_is
+            each user in users  
+                li #{user}
+          else 
+            li  
+                h1 There is no users in the list      
