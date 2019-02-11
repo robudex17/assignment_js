@@ -4,7 +4,8 @@
   "description": "My MVC 101",
   "main": "apps.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "nodemon apps.js"
   },
   "author": "Rogmer Bulaclac",
   "license": "ISC",
