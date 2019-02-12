@@ -1,0 +1,22 @@
+{
+  "name": "myshop",
+  "version": "1.0.0",
+  "description": "This is my shop project",
+  "main": "apps.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "nodemon apps.js"
+  },
+  "keywords": [
+    "online",
+    "shop"
+  ],
+  "author": "Rogmer Bulaclac",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10"
+  }
+}
