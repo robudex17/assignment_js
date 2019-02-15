@@ -1,0 +1,35 @@
+<%- include('../includes/head'); %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/product.css">
+<%- include('../includes/navigation'); %>
+
+    <main>
+        <form class="product-form" action="/admin/add-product" method="POST">
+            <div class="form-control">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" value=" <% if(editingMode) { %> <%= product.title%> <% } %> ">
+                
+            </div>
+            <div class="form-control">
+                    <label for="price">Price</label>
+                    <input type="text" name="price" id="price" step="0.01" value=" <% if(editingMode) { %> <%= product.price%> <% } %> ">                    
+             </div>
+             <div class="form-control">
+                    <label for="ImageUrl">ImageUrl</label>
+                    <input type="text" name="imageurl" id="imageUrl" value=" <% if(editingMode) { %> <%= product.imageurl%> <% } %> ">
+                    
+             </div>
+             <div class="form-control">
+                    <label for="description">Description </label>
+                    <textarea name="description" id="description"  rows="5" placeholder=" <% if(editingMode) { %> <%= product.title%> <% } %> "></textarea>                   
+             </div>
+            <% if (editingMode) { %>
+                <input type="hidden" name="productId" value="<%= product.id %>">
+            <% } %>
+            <button class="btn" type="submit"><% if (editingMode) { %>
+                <%= "Update Product" %> <% } else { %>
+                <%= "Add Product" %> <% } %>
+            </button>
+        </form>
+    </main>
+<%- include('../includes/footer'); %>

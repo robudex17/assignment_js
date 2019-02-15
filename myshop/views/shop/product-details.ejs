@@ -1,0 +1,18 @@
+<%- include('../includes/head'); %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/product.css">
+<%- include('../includes/navigation'); %>
+
+    <main class="centered">
+       <h1><%= product.title %></h1>
+       <hr>
+       <div>
+           <img src="<%= product.imageurl %>" alt="product.title">
+       </div>
+       <h2><%= product.description %></h2>
+       <form action="/cart" method="POST">
+        <input type="hidden" name="productId" value="<%= product.id %>">
+        <button type="submit" class="btn">Add to Cart</button>
+      </form>
+    </main>
+<%- include('../includes/footer'); %>
