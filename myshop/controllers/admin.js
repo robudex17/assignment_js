@@ -44,7 +44,7 @@ exports.getProduct = (req, res,next) => {
         path : '/admin/editProduct'
     });
 }
-exports.postProduct = (req,res, next) => {
+exports.postEditProduct = (req,res, next) => {
     let productId;
     if (req.body.productId) {
         productId = req.body.productId;
