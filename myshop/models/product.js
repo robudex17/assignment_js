@@ -1,9 +1,8 @@
-const fs = require('fs');
-const path = require('path');
-const Cart = require('./cart');
 
-const p = path.join(__dirname, '..', 'data', 'products.json');
-         
+const Cart = require('./cart');
+const database = require('../util/database');
+
+        
 function writeToFile(prod){
     fs.writeFile(p,JSON.stringify(prod), (err)=>{
         if(err) {
@@ -23,68 +22,36 @@ module.exports = class Product {
         this.id = id;
     }
     
-    save() {
-        if(this.id === null) {
-            this.id = Math.random().toString();
-            let products = [];
-            if(fs.existsSync(p)){
-                fs.readFile(p,(err,data) =>{
-                    if (err){
-                        console.log(err);
-                    }else{
-                        products = JSON.parse(data);
-                        products.push(this);
-                        writeToFile(products);
-                    }
-                });
-            }else{
-                products.push(this);
-                writeToFile(products);
-                
-            }                  
-        }else {
-            fs.readFile(p,(err,data) =>{
-                if (err){
-                    console.log(err);
-                }else{
-                    let products = JSON.parse(data);
-                    let getproductIndex = products.findIndex((p) => p.id === this.id);
-                    products[getproductIndex] = this;
-                    writeToFile(products);
+    save(){
+        if(this.id === null){
+            //let query = `INSERT INTO products SET title='${this.title}', price='${this.price}', imageurl='${this.imageurl}', description='${this.description}'`;
+           // let query = 'INSERT INTO products  SET title=?, price=?, imageurl=?, description=?', this.title, this.price, this.imageurl, this.description
+           
+            database.execute('INSERT INTO products  SET title=?, price=?, imageurl=?, description=?', [this.title, this.price, this.imageurl, this.description]).then(
+                (data) => {
+                    console.log('The data inserted');
                 }
-            
-            });      
-        }
-       
-       
-    }
-    static fetchAll(cb) {
-        fs.readFile(p,(err,data) =>{
-            if (err){
-                
-                cb([]);
-            }else{
-                cb(JSON.parse(data));
-            }
-        });
-    }
-    static fetchSingle(id, cb){
-        fs.readFile(p,(err,data)=>{
-            if(err){
+            ).catch((err)=>{
                 console.log(err);
-            }else {
-                let products = JSON.parse(data);
-                //short method
-                let product = products.find((p) => p.id === id);
-                    //long method
-                    // let product = products.find((p) =>{
-                    //     if(p.id === id){
-                    //         return p;
-                    //     }
-                    // });
-                cb(product);
-            }
-        });
+            });
+
+        }else{
+            let query = `UPDATE products SET title='${this.title}', price='${this.price}', imageurl='${this.imageurl}', description='${this.description}' WHERE id='${this.id}'`;
+            database.execute(query).then(
+                (data) => {
+                    console.log('Data is updated');
+                }
+            ).catch((err)=>{
+                console.log(err);
+            });
+        }
+    }
+   
+    static fetchAll() {
+       return database.execute('SELECT * FROM products');
+    }
+    static fetchSingle(id){
+       return database.execute(`SELECT * FROM products WHERE id= ${id}`);
     }
     static deleteProduct(id){
 
@@ -100,7 +67,7 @@ module.exports = class Product {
                 writeToFile(products);                   
             }
         
-        })
+        });
        
        
     }

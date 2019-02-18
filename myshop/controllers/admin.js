@@ -14,30 +14,33 @@ exports.getEditProduct = (req,res,next) =>{
     let productId = req.params.productId;
     let editingMode = req.query.edit;
 
-    Product.fetchSingle(productId, (product) => {
+    Product.fetchSingle(productId).then(([row,field]) =>{
+        console.log(row[0]);
         res.render('admin/add-edit-product',{
             pageTitle: 'Edit Product',
             path: '/admin/add-edit-product',
             editingMode : editingMode,
-            product: product
+            product: row[0]
         });
+    }).catch(err => {
+        console.log(err);
     });
 
     
 };
 
 exports.getProducts = (req,res, next) => {
-    
-    Product.fetchAll(products => {
+    Product.fetchAll().then(([rows,fields])=>{
         res.render('admin/products',{
-        pageTitle : "Admin Products",
-        path : '/admin/products',
-        prods : products
+            pageTitle : "Admin Products",
+            path : '/admin/products',
+            prods : rows
+            });
+    }).catch((err)=>{
+        console.log(err);
     });
-   
+};
 
-    });
-}
 exports.getProduct = (req, res,next) => {
     res.render('admin/edit-product', {
         pageTitle: "Edit Product",
