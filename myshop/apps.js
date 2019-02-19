@@ -1,3 +1,5 @@
+
+const sequelize = require('./util/database');
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -25,10 +27,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
-app.listen(3001);
 
-
-
-
-
-
+sequelize.authenticate().then(() => {
+    app.listen(3001);
+}).catch(err => {
+    console.log(err)
+})
