@@ -1,7 +1,7 @@
 
 const Sequelize = require('sequelize');
 
-const dbname = 'shop';
+const dbname = 'test';
 const dbuser = 'python';
 const dbpass = 'sbtph@2018';
 const dbhost = '192.168.70.250';

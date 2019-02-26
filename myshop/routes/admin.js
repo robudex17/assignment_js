@@ -3,11 +3,11 @@ const router = express.Router();
 const adminController = require('../controllers/admin');
 
 
-router.get('/add-product', adminController.getAddProduct);
+router.get('/:userlogin/add-product', adminController.getAddProduct);
 
-router.get('/products', adminController.getProducts);
+router.get('/:userlogin/products', adminController.getProducts);
 router.get('/products/:productId',adminController.getEditProduct);
-router.post('/add-product', adminController.postEditProduct);
+router.post('/:userlogin/add-product', adminController.postAddEditProduct);
 
 router.post('/delete-product', adminController.deleteProduct);
 
