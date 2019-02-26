@@ -50,8 +50,8 @@ app.use(shopRoutes);
  User.hasMany(Product);      //foreignkey is created in Product(target)
  User.hasOne(Cart);         //foreignkey is created in Cart(target)
  Cart.belongsTo(User)
- Product.belongsToMany(Cart, {through: CartItem})
- Cart.belongsToMany(Product, {through: CartItem})
+ Product.belongsToMany(Cart, {through: CartItem})  // got addition get/add/set/delete Product
+ Cart.belongsToMany(Product, {through: CartItem})  // goo addition get/add/set/delet Cart
 
 
 sequelize.sync()
@@ -62,9 +62,12 @@ sequelize.sync()
     if (!user) {
         User.create({
             user : "Admin",
-            emailadd : "admin@test.com"
-        })
+            emailadd : "admin@test.com"  
+         }
+        )
+       
     }else{
+        
         console.log("Admin is already created")
     }
     app.listen(3001)
