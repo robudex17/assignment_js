@@ -1,26 +1,24 @@
+const mongodb = require('mongodb');
+const MongoClient = mongodb.MongoClient;
 
-const Sequelize = require('sequelize');
+let db;
+const dbConnect = (callback) => {
+MongoClient.connect('mongodb+srv://robudex17:Uwuv5s6KBcXR0SNw@cluster0-eexlp.mongodb.net/shop?retryWrites=true',{useNewUrlParser:true})
+.then(client => {
+    db = client.db()
+    callback('Success fully connected')
+})
+.catch(err => console.log(err))
 
-const dbname = 'test';
-const dbuser = 'python';
-const dbpass = 'sbtph@2018';
-const dbhost = '192.168.70.250';
+} 
 
-const sequelize = new Sequelize(dbname, dbuser,dbpass, {
-    host: dbhost,
-    dialect: 'mysql',
-    operatorsAliases: false,
-    pool : {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
+const getdb = () => {
+    if(db) {
+        return db
+    }else{
+        console.log("No found Database")
     }
-}); 
 
-
-
-module.exports = sequelize;
-
-
-
+}
+exports.dbConnect = dbConnect
+exports.getdb = getdb

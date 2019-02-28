@@ -4,7 +4,7 @@
 <%- include('../includes/navigation'); %>
 
     <main>
-        <form class="product-form" action="/<%=userlogin%>/add-product" method="POST">
+        <form class="product-form" action="/admin/add-product" method="POST">
             <div class="form-control">
                 <label for="title">Title</label>
                 <input type="text" name="title" id="title" value="<% if(editingMode) { %> <%=product.title%> <% } %>">
@@ -16,7 +16,7 @@
              </div>
              <div class="form-control">
                     <label for="ImageUrl">ImageUrl</label>
-                    <input type="text" name="imageurl" id="imageUrl" value="<% if(editingMode) { %> <%=product.imageurl%> <% } %>">
+                    <input type="text" name="imageUrl" id="imageUrl" value="<% if(editingMode) { %> <%=product.imageUrl%> <% } %>">
                     
              </div>
              <div class="form-control">
@@ -24,7 +24,7 @@
                     <textarea name="description" id="description"  rows="5" placeholder="<% if(editingMode) { %> <%=product.description%> <% } %>"></textarea>                   
              </div>
             <% if (editingMode) { %>
-                <input type="hidden" name="productId" value="<%= product.id %>">
+                <input type="hidden" name="productId" value="<%= product._id %>">
             <% } %>
             <button class="btn" type="submit"><% if (editingMode) { %>
                 <%= "Update Product" %> <% } else { %>

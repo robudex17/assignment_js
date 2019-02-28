@@ -1,5 +1,5 @@
 const Product = require('../models/product');
-const Cart = require ('../models/cart');
+//const Cart = require ('../models/cart');
 //const CartItem = require('../models/cart-item')
 
 exports.getProducts = (req, res, next) => {
@@ -7,47 +7,42 @@ exports.getProducts = (req, res, next) => {
         res.render('shop/product-list',{
             pageTitle : "Product list",
             prods : products,
-            path : '/products',
-            userlogin: req.user.user,
-            userpath: null
+            path : '/products'
         });
     }); 
 };
 
 exports.getProduct = (req, res, next) => {
-    const id = req.params.productId;
+     const id = req.params.productId;
+    // console.log(id)
     Product.findById(id).then(product => {
         res.render('shop/product-details', {
             pageTitle: "Prodcut details",
-            path : `/${req.user.user}/products`,
-            userpath: `/${req.user.user}/products`,
-            product : product,
-            userlogin: req.user.user
+            path : '/products',
+            product : product
+            
+        });
     });
-    });
-};
 
+  
+}
 
 exports.getIndex = (req, res, next) => {
     Product.findAll().then(products => {
         res.render('shop/index',{
             pageTitle : "Product list",
             prods : products,
-            path : '/',
-            userlogin: req.user.user,
-            userpath: null
-        });
-    }).catch(err => {
-        console.log(err);
-    });
-};
-
+            path : '/'
+        })
+    })
+    .catch(err => console.log(err))
+}
 
 exports.getCheckout = (req,res,next) => {
     res.render('shop/checkout', {
         pageTitle: "Checkout",
         path : '/checkout',
-        userlogin: req.user.user
+      
     });
 };
 
