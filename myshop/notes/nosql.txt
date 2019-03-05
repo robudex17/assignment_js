@@ -11,3 +11,7 @@ Mongodb database user
 username: robudex17
 password: Uwuv5s6KBcXR0SNw
 SRV address : mongodb+srv://robudex17:Uwuv5s6KBcXR0SNw@cluster0-eexlp.mongodb.net/test?retryWrites=true
+
+cart : {items : [{product_id, quantity},{product_id, quantity}]}
+
+cart.items.findIndex(cb => cb.product_id === product_id)

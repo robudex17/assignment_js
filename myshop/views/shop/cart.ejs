@@ -6,23 +6,30 @@
 
 
 
- <h1>Login User: <%= userlogin%></h1>
  <h2>Your Cart</h2>
 
  <ul>
      <% if (prods.length > 0) { %>
         <% for (let product of prods) { %>
-            <li><%= product.title%></li>
-            <li><%=product.cartItem.quantity%></li>
+            <li>Product Title:<%= product.title %></li>
+            <li>ProductId:<%= product._id%></li>
+            <li>Quantity:<%=product.quantity%></li>
             <li>
                 <form action="/deletefromcart" method="POST">
-                     <input type="hidden" name="productId" value="<%= product.id %>">
+                     <input type="hidden" name="productId" value="<%= product._id %>">
                      <button class=btn>DELETE</button>
-             </form></li>
-        <% } %>
+             </form></li> 
+        <% }%>
+    </ul>
+        <hr>
+        <div>
+            <form action="/create-orders" method="POST">
+                    <button class=btn>ORDER NOW</button>
+            </form>
+        </div>
     <% } else {%>
         <h1>No Product in the Cart</h1>
     <% } %>
- </ul>
+
 
 <%- include('../includes/footer'); %>

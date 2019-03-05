@@ -1,7 +1,6 @@
 const mongodb = require('mongodb');
 const getdb = require('../util/database').getdb
 
-
 const Product = class {
     constructor (title,price,imageUrl,description){
         this.title = title;
@@ -11,7 +10,6 @@ const Product = class {
        
     }
     save(){
-
         const db = getdb();
        return db.collection('products').insertOne(this)
         .then(result => {
