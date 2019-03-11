@@ -9,10 +9,10 @@
  <h2>Your Cart</h2>
 
  <ul>
-     <% if (prods.length > 0) { %>
-        <% for (let product of prods) { %>
-            <li>Product Title:<%= product.title %></li>
-            <li>ProductId:<%= product._id%></li>
+     <% if (prods.cart.items.length > 0) { %>
+        <% for (let product of prods.cart.items) { %>
+            <li>Product Title:<%= product.productId.title %></li>
+            <li>ProductId:<%= product.productId._id%></li>
             <li>Quantity:<%=product.quantity%></li>
             <li>
                 <form action="/deletefromcart" method="POST">
