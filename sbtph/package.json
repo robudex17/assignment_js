@@ -1,0 +1,16 @@
+{
+  "name": "sbtph",
+  "version": "1.0.0",
+  "description": "SBTPH CSD INBOUND",
+  "main": "apps.js",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon apps.js"
+  },
+  "author": "Rogmer",
+  "license": "ISC"
+}

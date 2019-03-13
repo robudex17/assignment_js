@@ -1,0 +1,59 @@
+<%- include('./includes/header'); %>
+
+  
+
+<%- include('./includes/nav'); %>
+
+<main role="main" >
+        <h2 class="text-center font-weight-bold text-primary"><%=username %><span class='text-danger'> CALLS DETAILS</span></h2>
+            <div>
+                <table class="table">
+                  <thead class="thead-dark">
+                     <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Extension</th>
+                        <th scope="col">CalledNumber</th>
+                        <th scope="col">Caller</th>
+                        <th scope="col">CallStatus</th>
+                        <th scope="col">StartTime</th>
+                        <th scope="col">EndTime</th>
+                        <th scope="col">CallDuration</th>
+                        <th scope="col">Call-Recordings</th>
+                        <th scope="col">
+                            <form action="/agent_call_details" method="GET">
+                              <input type="hidden" name="extension" value="<%=extension  %>" >
+                              <input type="hidden" name="username" value="<%= username  %>">
+                              <input type="date" name="getdate" id="datePicker"> 
+                              <input class="btn" type="submit"  id=clickdate" value="Select_Date"></form>
+  
+                        </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                        <% if (csd.length > 0) { %>
+                            <% for (let i= 0; csd.length>i; i++) { %>
+                                <tr>
+                                    <th scope="row"><%= i %></th>
+                                    <td><%= csd[i].extension  %></td>
+                                    <td><%= csd[i].CalledNumber  %></td>
+                                    <td><%= csd[i].Caller  %></td>
+                                    <td><%= csd[i].CallStatus  %></td>
+                                    <td><%= csd[i].startTime  %></td>
+                                    <td><%= csd[i].endTime  %></td>
+                                    <td><%= csd[i].totalduration  %></td>
+                                    <td><a href="http://211.0.128.110/callrecording/incoming/<%=slice_date%>/<%=csd[i].Caller%>-<%=csd[i].CalledNumber%>-<%=csd[i].StartTimeStamp%>.mp3">Click Details</a></td>
+                                    <td><%= date%></td>
+                                </tr>
+                             <% } %>
+                        <% } else { %>
+                           <h1>NO CALL DETAILS</h1>
+                        <%}%>
+                </tbody>
+                  </tbody>
+              </table>
+            </div>
+         
+      </main>
+
+
+<%- include('./includes/footer'); %>

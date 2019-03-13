@@ -1,0 +1,38 @@
+<%- include('./includes/header'); %>
+
+<%- include('./includes/nav'); %>
+
+    <main role="main" class="container">
+          <div>
+              <table class="table">
+                <thead class="thead-dark">
+                   <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">EXTENSION</th>
+                      <th scope="col">NAME</th>
+                      <th scope="col">LOGIN/LOGOUT</th>
+                      <th scope="col">LOGIN DURATION</th>
+                  </tr>
+                
+                </thead>
+               
+                <tbody>
+                </tbody>
+                <% if (csd.length > 0) { %>
+                    <% for (let i= 0; csd.length>i; i++) { %>
+                        <tr>
+                            <th scope="row"><%= i %></th>
+                            <td><%= csd[i].extension  %></td>
+                            <td><%= csd[i].username  %></td>
+                            <td><a href="/loginlogoutdetails/?extension=<%=csd[i].extension%>&username=<%=csd[i].username%>">Click Details</a></td>
+                            <td><%= csd[i].loginHours%></td>
+                        </tr>
+                     <% } %>
+                <% }%>
+            </table>
+          </div>
+       
+    </main>
+
+
+    <%- include('./includes/footer'); %>

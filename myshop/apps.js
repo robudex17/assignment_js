@@ -59,7 +59,7 @@ mongoose.connect('mongodb+srv://robudex17:Uwuv5s6KBcXR0SNw@cluster0-eexlp.mongod
         //       console.log('New document is saved')
         //   }).catch(err => console.log(err))
 
-        User.deleteOne({'user.cart.items[0]._id': new mongodb.ObjectId('5c86c2721e453d4a507397aa')}).then(result => console.log(result))   
+          
         }else{
             const insertuser = {name:'Rogmer', username:'admin', email: 'admin@test.com', cart: {items:[]}}
             const user = new User(insertuser)

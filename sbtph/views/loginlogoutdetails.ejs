@@ -1,0 +1,43 @@
+<%- include('./includes/header'); %>
+
+<%- include('./includes/nav'); %>
+
+<main role="main" class="container">
+        <div>
+            <h2 class="text-center font-weight-bold text-primary"><%= username %><span class='text-danger'> LOGIN/LOGOUT STATISTICS</span></h2>
+            <table class="table">
+              <thead class="thead-dark">
+                 <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">LOG</th>
+                    <th scope="col">DATE</th>
+                    <th scope="col">TIME</th>
+                    <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                  <% if (details.length > 0) { %>
+                    <% for(let i=0 ; details.length>i ; i++) { %>
+                        <tr>
+                            <th scope="row"><%= i %></th>
+                            <td><%= details[i].log%></td>
+                            <td><%= details[i].logdate%></td>
+                            <td><%= details[i].logtime%></td>
+                        </tr>
+                    <%} %>
+
+                 <%}else {%>
+                    <tr>
+                        <td>No Login Details</td>
+                    </tr>
+                    <% } %>
+              </tbody>
+          </table>
+        </div>
+     
+  </main>
+
+
+
+
+<%- include('./includes/footer'); %>

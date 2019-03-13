@@ -1,0 +1,43 @@
+<%- include('./includes/header'); %>
+
+  
+
+    <%- include('./includes/nav'); %>
+    <main role="main" class="container">
+          <div>
+              <table class="table">
+                <thead class="thead-dark">
+                   <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">EXTENSION</th>
+                      <th scope="col">NAME</th>
+                      <th scope="col" class="text-center">Total Calls Answered</th>
+                      <th scope="col">Total Calls Duration</th>
+                      <th scope="col">
+                      	<form action="/call_summary" method="GET">
+                      		  <input type="date" name="getdate" id="datePicker"> 	
+                              <input class="btn" type="submit"  id=clickdate" value="Select_Date">
+                          </form>
+                      </th>
+                  </tr>
+                </thead>
+                <tbody>
+                        <% if (csd.length > 0) { %>
+                            <% for (let i= 0; csd.length>i; i++) { %>
+                                <tr>
+                                    <th scope="row"><%= i %></th>
+                                    <td><%= csd[i].extension  %></td>
+                                    <td><%= csd[i].username  %></td>
+                                    <td><%= csd[i].summary.totalCallAnswer  %></td>
+                                    <td><%= csd[i].summary.totalduration  %></td>
+                                    <td><a href="/agent_call_details/?extension=<%=csd[i].extension%>&username=<%=csd[i].username%>&getdate=<%=date%>"><%= date  %></a></td>
+                                </tr>
+                             <% } %>
+                        <% }%>
+                </tbody>
+            </table>
+          </div>
+       
+    </main>
+
+    <%- include('./includes/footer'); %>

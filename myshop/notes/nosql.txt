@@ -15,3 +15,11 @@ SRV address : mongodb+srv://robudex17:Uwuv5s6KBcXR0SNw@cluster0-eexlp.mongodb.ne
 cart : {items : [{product_id, quantity},{product_id, quantity}]}
 
 cart.items.findIndex(cb => cb.product_id === product_id)
+
+
+let array1 = [{id:1, name:'rogmer'}, {id:2, name:taeha}]
+
+let newarray = map
+
+
+orders: 
